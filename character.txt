@@ -1,0 +1,12 @@
+host sshqasg
+  hostname %h.regentmarkets.com
+  port 22884
+  user boluwaji
+  forwardagent yes
+  identityfile ~/.ssh/id_rsa
+host qa38
+  hostname %h
+  user boluwaji
+  forwardagent yes
+  proxycommand ssh -W %h:%p sshqasg
+  identityfile ~/.ssh/id_rsa
