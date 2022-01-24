@@ -17,3 +17,4 @@ host qa38
 
 
 
+character has been initialized after migration
