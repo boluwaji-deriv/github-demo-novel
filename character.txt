@@ -1,3 +1,7 @@
+===============
+character
+===============
+
 host sshqasg
   hostname %h.regentmarkets.com
   port 22884
