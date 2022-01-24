@@ -17,28 +17,3 @@ host qa38
 
 
 
-> @@ -0,0 +1,17 @@
-+BEGIN;
-+
-+CREATE SCHEMA pgcrypto;
-+GRANT USAGE ON SCHEMA pgcrypto TO PUBLIC;
-+CREATE EXTENSION pgcrypto SCHEMA pgcrypto;
-+
-+CREATE TABLE transaction.token_trace (
-+    transaction_id BIGINT
-+                   PRIMARY KEY
-+                   REFERENCES transaction.transaction(id),
-+    token_hash     bytea
-+);
-
-
-> @@ -25,10 +25,11 @@ CREATE OR REPLACE FUNCTION bet_v1.buy_bet(  a_loginid           VARCHAR(12),
-                                             t_source            BIGINT,         -- 22
-                                             t_app_markup        NUMERIC,        -- 23
-                                             t_quantity          INT,            -- 24
-+                                            t_token             TEXT,           -- 25
-I believe DEFAULT parameters are bad. You might have noticed that I removed the DEFAULT value also from that last duration parameter.
-
-We use DEFAULT as a means of transition from one version to the next. Once the next version of client software is activated the optional value is always passed in. That is what we usually want. However, if you leave the DEFAULT value, you might miss use cases. More importantly, you might be sloppy with unit tests.
-
-Also, for one or two DEFAULT parameters you might get away with it. But the further the code evolves the more a mess it becomes. I like it if the order of parameters in a parameter list makes a certain sense. Here for instance, all FMB stuff is grouped together. So is the TXN stuff. You still can use the keyword based parameter list when calling a function like t_quantity => 2, t_token => 'bla' but we do that very rarely. That's why I don't like DEFAULT function parameters.
