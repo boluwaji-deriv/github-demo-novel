@@ -14,3 +14,5 @@ This is chapter 2 of my book. You will really enjoy it
 Chapter one contain all the history about Lekan, Teehi, Bolu and legrand
 Their experience in the country of Malaysia was fantastic. Please follow along with me as we show case this wonderful experience by them.
 Are you ready!
+
+end of chapter 2
